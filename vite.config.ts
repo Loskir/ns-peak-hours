@@ -2,9 +2,14 @@ import { defineConfig } from 'vite'
 
 import { analyzer } from 'vite-bundle-analyzer'
 
+const isDebug = process.env.DEBUG === '1'
+
 export default defineConfig({
-  // plugins: [analyzer({ analyzerMode: 'server', openAnalyzer: true })],
-  // build: {
-  //   sourcemap: true
-  // }
+  plugins: [
+    isDebug &&
+      analyzer({ analyzerMode: 'server', openAnalyzer: true }),
+  ],
+  build: {
+    sourcemap: isDebug,
+  },
 })
