@@ -7,11 +7,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "size": "npm run build && size-limit"
   },
   "devDependencies": {
+    "@size-limit/preset-app": "^11.0.2",
     "@types/luxon": "^3.4.2",
     "luxon": "^3.4.4",
+    "size-limit": "^11.0.2",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vite-bundle-analyzer": "^0.8.1",
@@ -20,5 +23,11 @@
   "dependencies": {
     "@formkit/tempo": "^0.0.15",
     "nanostores": "^0.10.0"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/assets/*.js",
+      "limit": "20 kB"
+    }
+  ]
 }
