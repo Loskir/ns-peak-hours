@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@preact/preset-vite": "^2.8.1",
     "@types/luxon": "^3.4.2",
     "luxon": "^3.4.4",
     "typescript": "^5.2.2",
@@ -19,6 +20,8 @@
   },
   "dependencies": {
     "@formkit/tempo": "^0.0.15",
-    "nanostores": "^0.10.0"
+    "@nanostores/preact": "^0.5.1",
+    "nanostores": "^0.10.0",
+    "preact": "^10.19.6"
   }
 }
