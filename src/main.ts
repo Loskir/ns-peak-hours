@@ -1,7 +1,7 @@
 import {
   setupUpdateEverySecond as setupUpdateCurrentDateEverySecond,
 } from './store/currentDate.ts'
-import { $isPeakHours } from './store/isPeakHours.ts'
+import { isPeakHours as $isPeakHours } from './store/isPeakHours.ts'
 
 $isPeakHours.subscribe((isPeakHours) => {
   const el = document.querySelector('body')
@@ -16,7 +16,8 @@ $isPeakHours.subscribe((isPeakHours) => {
 
 setupUpdateCurrentDateEverySecond()
 
-import { render } from 'preact'
-import { App } from './app.tsx'
+import App from './App.svelte'
 
-render(<App />, document.getElementById('app')!)
+const app = new App({
+  target: document.getElementById('app')!,
+})

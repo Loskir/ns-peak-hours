@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite'
 
-import preact from '@preact/preset-vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { analyzer } from 'vite-bundle-analyzer'
 
 export default defineConfig({
   plugins: [
-    preact(),
+    svelte(),
     // @ts-ignore
     process.env.ANALYZE === '1' &&
       analyzer({ analyzerMode: 'server', openAnalyzer: true }),
