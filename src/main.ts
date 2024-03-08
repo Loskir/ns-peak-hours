@@ -1,12 +1,9 @@
-import '@kitajs/html/register'
-import { isPeakHours } from './lib/isPeakHours/isPeakHours.ts'
-
 import {
   $currentDate,
   setupUpdateEverySecond as setupUpdateCurrentDateEverySecond,
 } from './store/currentDate.ts'
 import { $isPeakHours, $nextChangeAt } from './store/isPeakHours.ts'
-import { $countdown } from './store/countdown.tsx'
+import { $countdown } from './store/countdown.ts'
 
 // const render = () => {
 //   console.log('render')
