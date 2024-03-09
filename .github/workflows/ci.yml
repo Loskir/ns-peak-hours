@@ -1,0 +1,16 @@
+name: 'CI'
+on:
+  push:
+jobs:
+  size:
+    runs-on: ubuntu-latest
+    env:
+      CI_JOB_NUMBER: 1
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
+      - name: Run size-limit
+        run: npm run size

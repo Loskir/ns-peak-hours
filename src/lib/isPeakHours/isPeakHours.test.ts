@@ -57,3 +57,25 @@ test('correctly handles 20:00 on Friday', () => {
     }).toJSDate(),
   })
 })
+test('correctly handles 20:00 on Saturday', () => {
+  const date = DateTime.local(2024, 3, 9, 20, 0, 0, {
+    zone: 'Europe/Amsterdam',
+  }).toJSDate()
+  expect(isPeakHours(date)).toEqual({
+    isPeakHours: false,
+    nextChangeAt: DateTime.local(2024, 3, 11, 6, 30, 0, {
+      zone: 'Europe/Amsterdam',
+    }).toJSDate(),
+  })
+})
+test('correctly handles 20:00 on Sunday', () => {
+  const date = DateTime.local(2024, 3, 10, 20, 0, 0, {
+    zone: 'Europe/Amsterdam',
+  }).toJSDate()
+  expect(isPeakHours(date)).toEqual({
+    isPeakHours: false,
+    nextChangeAt: DateTime.local(2024, 3, 11, 6, 30, 0, {
+      zone: 'Europe/Amsterdam',
+    }).toJSDate(),
+  })
+})
