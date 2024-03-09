@@ -11,20 +11,20 @@ A small pet-project for checking if it's currently peak hours for NS (Dutch rail
 ### Features
 
 - Fully typed
-- Uses `vite` for bundling
-- Uses `vitest` for unit tests
+- Uses [`vite`](https://vitejs.dev/) for bundling
+- Uses [`vitest`](https://vitest.dev/) for unit tests
 - Timezone-agnostic calculation: works regardless of your device timezone
-- Uses `nanostores` for state management
-- Uses `size-limit` for controlling bundle size
+- Uses [`nanostores`](https://github.com/nanostores/nanostores) for state management
+- Uses [`size-limit`](https://github.com/ai/size-limit) for controlling bundle size
 - Implementations in plain JS, Preact, Svelte, and Solid
 
 ### Choosing a date manipulation library
 
-At first I used `luxon` as I had a very positive experience with it.
+At first I used [`luxon`](https://moment.github.io/luxon) as I had a very positive experience with it.
 However, unfortunately it contributed more than 20kB to the bundle size.
 Since for this project I've decided to try to keep bundle size as low as possible, I knew I'll have to switch.
 
-I rewrote the code, using two very similar libraries: `date-fns` and `@formkit/tempo`.
+I rewrote the code, using two very similar libraries: [`date-fns`](https://date-fns.org/) and [`@formkit/tempo`](https://tempo.formkit.com/).
 Both of them use an approach of providing individual functions for each operation and returning a plain `Date` object in each one.
 Naturally, I didn't want to ship two almost identical libraries at the same time.
 However, I couldn't simply choose one, as neither library met all my requirements.
@@ -43,7 +43,7 @@ This seems easy to say, but it was almost impossible to implement using this app
 So if I call `date.setHours(9)`, it will always set it to 9 in **local time**, not Dutch or even UTC.
 I wasted a lot of time trying to fix it, but to no avail.
 
-Then I started looking for a library that would be both tree-shakeble and convenient to use, and I remembered about `dayjs`.
+Then I started looking for a library that would be both tree-shakeble and convenient to use, and I remembered about [`dayjs`](https://day.js.org/).
 It turned out to be just what I needed!
 I quicky rewrote my code using this library without any problems, and was surprised to see that it added only about 5kB to my bundle size.
 
@@ -54,7 +54,7 @@ Here's a comparison table:
 | luxon          | ❌ (20kB)      | ✅                                                      | ✅        |
 | date-fns       | ✅             | ❌ [*](https://github.com/marnusw/date-fns-tz/pull/265) | ✅        |
 | @formkit/tempo | ✅             | ✅ *                                                    | ❌        |
-| dayjs          | ✅             | ✅                                                      | ✅        |
+| dayjs          | ~ (2kB+plugins)        | ✅                                                      | ✅        |
 
 ### Different approaches to UI
 
@@ -64,8 +64,9 @@ I implemented the same behavior in 3 UI approaches:
 - Plain JS
 - Preact
 - Svelte
+- Solid
 
-State management is done using [nanostores](https://github.com/nanostores/nanostores) in all 3 cases.
+> State management is done using `nanostores` in all cases.
 
 #### Plain JS
 
@@ -73,7 +74,7 @@ What can I say?
 It was extremely painful.
 You either declare your layout in HTML and change it element by element or make your layout entirely through JS which is so inconvenient.
 
-At some point, I used [@kitajs/html](https://github.com/kitajs/html) which is a library that renders JSX into strings.
+At some point, I used [`@kitajs/html`](https://github.com/kitajs/html) which is a library that renders JSX into strings.
 It definitely was more convenient than writing HTML as strings (you don't lose completions in your IDE which is very important to me).
 But still it wasn't quite as convenient I hoped, because I still couldn't easily manage the elements I was creating the way I would with `document.createElement`. For example:
 
