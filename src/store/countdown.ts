@@ -1,11 +1,11 @@
 import { computed } from 'nanostores'
 import { $nextChangeAt } from './isPeakHours'
-import { $currentDate } from './currentDate'
+import { $currentTime } from './currentTime'
 import { formatDuration } from '../lib/formatDuration/formatDuration'
 
 export const $countdown = computed(
-  [$nextChangeAt, $currentDate],
-  (nextChangeAtRaw, currentDateRaw) => {
-    return formatDuration(new Date(currentDateRaw), new Date(nextChangeAtRaw))
+  [$nextChangeAt, $currentTime],
+  (nextChangeAtRaw, currentTimeRaw) => {
+    return formatDuration(new Date(currentTimeRaw), new Date(nextChangeAtRaw))
   },
 )

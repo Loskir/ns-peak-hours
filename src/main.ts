@@ -1,27 +1,11 @@
-import {
-  $currentDate,
-  setupUpdateEverySecond as setupUpdateCurrentDateEverySecond,
-} from './store/currentDate.ts'
-import { $isPeakHours, $nextChangeAt } from './store/isPeakHours.ts'
-import { $countdown } from './store/countdown.ts'
+import { $currentTime } from './store/currentTime'
+import { $isPeakHours, $nextChangeAt } from './store/isPeakHours'
+import { $countdown } from './store/countdown'
+import { isPeakHours } from './lib/isPeakHours/isPeakHours'
 
-// const render = () => {
-//   console.log('render')
-//   const date = new Date()
-//   const result = isPeakHours(date)
-//   document.querySelector<HTMLDivElement>('#app')!.innerHTML = (
-//     <>
-//       <p>Date: {date}</p>
-//       <p>
-//         Is peak: {result.isPeakHours ? 'yes' : 'no'}, next change:{' '}
-//         {result.nextChangeAt}
-//       </p>
-//     </>
-//   ) as string
-// }
-$currentDate.subscribe((date) => {
+$currentTime.subscribe((currentTime) => {
   const el = document.querySelector('#date')
-  if (el) el.innerHTML = new Date(date).toLocaleString()
+  if (el) el.innerHTML = new Date(currentTime).toLocaleString()
 })
 $isPeakHours.subscribe((isPeakHours) => {
   const el = document.querySelector('body')
@@ -49,5 +33,3 @@ $countdown.subscribe((value) => {
   const el = document.querySelector('#countdown')
   if (el) el.innerHTML = value
 })
-
-setupUpdateCurrentDateEverySecond()

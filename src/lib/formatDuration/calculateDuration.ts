@@ -11,7 +11,7 @@ export const calculateDuration = (dateStart: Date, dateEnd: Date) => {
   const minutes = (diffMs / MS_IN_MINUTE) | 0
   minutes && (diffMs %= minutes * MS_IN_MINUTE)
   const seconds = (diffMs / MS_IN_SECOND) | 0
-  seconds && (diffMs %= seconds * MS_IN_MINUTE)
+  seconds && (diffMs %= seconds * MS_IN_SECOND)
   return {
     days,
     hours,
