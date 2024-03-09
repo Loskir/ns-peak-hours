@@ -1,7 +1,7 @@
 import { getMsToNextSecond } from "./getMsToNextSecond"
 
 export const subscribeEverySecond = (cb: (ms: number) => void) => {
-  let timeoutHandle: number | undefined = undefined
+  let timeoutHandle: ReturnType<typeof setTimeout> | undefined = undefined
   const loop = () => {
     cb(Date.now())
     timeoutHandle = setTimeout(loop, getMsToNextSecond())
