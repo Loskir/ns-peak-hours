@@ -2,6 +2,8 @@
 
 A small pet-project for checking if it's currently peak hours for NS (Dutch railway company) tariffs.
 
+[Try it yourself](https://ns-peak-hours.vercel.app)
+
 ## Technical stuff
 
 > All sized imply GZIP compression unless specified otherwise.
@@ -9,11 +11,12 @@ A small pet-project for checking if it's currently peak hours for NS (Dutch rail
 ### Features
 
 - Fully typed
-- Unit tests with vitest
+- Uses `vite` for bundling
+- Uses `vitest` for unit tests
 - Timezone-agnostic calculation: works regardless of your device timezone
-- `nanostores` for state management
-- Implemented in plain JS, Preact, and Svelte
-- `size-limit` for controlling bundle size
+- Uses `nanostores` for state management
+- Uses `size-limit` for controlling bundle size
+- Implementations in plain JS, Preact, Svelte, and Solid
 
 ### Choosing a date manipulation library
 
@@ -46,12 +49,12 @@ I quicky rewrote my code using this library without any problems, and was surpri
 
 Here's a comparison table:
 
-| Library        | tree-shakeable | timezones                                                    | durations |
-| -------------- | -------------- | ------------------------------------------------------------ | --------- |
-| luxon          | ❌ (20kB)      | ✅                                                           | ✅        |
+| Library        | tree-shakeable | timezones                                               | durations |
+| -------------- | -------------- | ------------------------------------------------------- | --------- |
+| luxon          | ❌ (20kB)      | ✅                                                      | ✅        |
 | date-fns       | ✅             | ❌ [*](https://github.com/marnusw/date-fns-tz/pull/265) | ✅        |
-| @formkit/tempo | ✅             | ✅ *                                                         | ❌        |
-| dayjs          | ✅             | ✅                                                           | ✅        |
+| @formkit/tempo | ✅             | ✅ *                                                    | ❌        |
+| dayjs          | ✅             | ✅                                                      | ✅        |
 
 ### Different approaches to UI
 
@@ -87,11 +90,27 @@ It wasn't very helpful and also added around 2kB the bundle size so I ditched it
 #### Preact
 
 After struggling with plain JS I decided to give `preact` a try.
-I was afraid that it would increase the bundle size a lot, but it only increased by ~5.4kB (for a total bundle size of 8.13kB).
+I was afraid that it would increase the bundle size a lot, but it only increased by ~5.4kB (for a total bundle size of 11.89kB).
 That's a lot, but not too much for such a powerful library.
 
 #### Svelte
 
 After that I decided to try Svelte just for fun.
 I've used it in the past, but my experience wasn't great, so I didn't expect much.
-But I was completely amazed to see a 5kB bundle with Svelte only taking up less than 2kB!
+But I was completely amazed to see a 8.68kB bundle with Svelte only taking up less than 2kB!
+
+#### Solid
+
+Not much to say, a solid choice (pun intended).
+Bundle size: 11.15kB.
+
+### Bundle size comparison
+
+> All versions use `nanostores` and `dayjs`
+
+| UI library | Size (gzip) |
+| ---------- | ----------- |
+| Plain JS   | 6.48kB      |
+| Svelte     | 8.68kB      |
+| Solid      | 11.15kB     |
+| Preact     | 11.89kB     |
